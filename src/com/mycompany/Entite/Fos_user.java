@@ -6,8 +6,7 @@
 
 package com.mycompany.Entite;
 
-import java.sql.Date;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -34,7 +33,7 @@ public class Fos_user {
     private Date last_login;
     private int locked;
     private int expired;
-    private LocalDate expired_at;
+    private Date expired_at;
     private String confirmation_key;
     private Date password_requested_at;
     private Role roles;
@@ -46,9 +45,8 @@ public class Fos_user {
     private String sexe;
     private int num_tel;
     private String photo_de_profil;
-    private LocalDate date_de_naissance;
+    private Date date_de_naissance;
     private String adresse;
-    private List<Fos_user> listAmi ;
     private String recuperation_token;
 
     public Fos_user() {
@@ -62,7 +60,7 @@ public class Fos_user {
         this.recuperation_token = recuperation_token;
     }
 
-    /*public Fos_user(String username, String username_canonical, String email, String email_canonical, int enabled, String salt, String password, Date last_login, int locked, int expired, LocalDate expired_at, String confirmation_key, Date password_requested_at, int credentials_expired, int credentials_expire_at, String nom, String prenom, int age, String sexe, int num_tel, String photo_de_profil, String date_de_naissance, String adresse) {
+    /*public Fos_user(String username, String username_canonical, String email, String email_canonical, int enabled, String salt, String password, Date last_login, int locked, int expired, Date expired_at, String confirmation_key, Date password_requested_at, int credentials_expired, int credentials_expire_at, String nom, String prenom, int age, String sexe, int num_tel, String photo_de_profil, String date_de_naissance, String adresse) {
         this.username = username;
         this.username_canonical = null;
         this.email = email;
@@ -90,7 +88,7 @@ public class Fos_user {
     }
 */
 
-    public Fos_user(String username, String email, String password, String nom, String prenom, int age, String sexe, int num_tel, String photo_de_profil, LocalDate date_de_naissance, String adresse) {
+    public Fos_user(String username, String email, String password, String nom, String prenom, int age, String sexe, int num_tel, String photo_de_profil, Date date_de_naissance, String adresse) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -200,11 +198,11 @@ public class Fos_user {
         this.expired = expired;
     }
 
-    public LocalDate getExpired_at() {
+    public Date getExpired_at() {
         return expired_at;
     }
 
-    public void setExpired_at(LocalDate expired_at) {
+    public void setExpired_at(Date expired_at) {
         this.expired_at = expired_at;
     }
 
@@ -296,11 +294,11 @@ public class Fos_user {
         this.photo_de_profil = photo_de_profil;
     }
 
-    public LocalDate getDate_de_naissance() {
+    public Date getDate_de_naissance() {
         return date_de_naissance;
     }
 
-    public void setDate_de_naissance(LocalDate date_de_naissance) {
+    public void setDate_de_naissance(Date date_de_naissance) {
         this.date_de_naissance = date_de_naissance;
     }
 
@@ -312,51 +310,12 @@ public class Fos_user {
         this.adresse = adresse;
     }
 
-    public List<Fos_user> getListAmi() {
-        return listAmi;
-    }
-
-    public void setListAmi(List<Fos_user> listAmi) {
-        this.listAmi = listAmi;
-    }
-    
     @Override
     public String toString() {
-        return "fos_user{" + "id=" + id + ", username=" + username + ", username_canonical=" + username_canonical + ", email=" + email + ", email_canonical=" + email_canonical + ", enabled=" + enabled + ", salt=" + salt + ", password=" + password + ", last_login=" + last_login + ", locked=" + locked + ", expired=" + expired + ", expired_at=" + expired_at + ", confirmation_key=" + confirmation_key + ", password_requested_at=" + password_requested_at + ", roles=" + roles + ", credentials_expired=" + credentials_expired + ", credentials_expire_at=" + credentials_expire_at + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + ", sexe=" + sexe + ", num_tel=" + num_tel + ", photo_de_profil=" + photo_de_profil + ", date_de_naissance=" + date_de_naissance + ", adresse=" + adresse + ", listAmi=" + listAmi + '}';
+        return "fos_user{" + "id=" + id + ", username=" + username + ", username_canonical=" + username_canonical + ", email=" + email + ", email_canonical=" + email_canonical + ", enabled=" + enabled + ", salt=" + salt + ", password=" + password + ", last_login=" + last_login + ", locked=" + locked + ", expired=" + expired + ", expired_at=" + expired_at + ", confirmation_key=" + confirmation_key + ", password_requested_at=" + password_requested_at + ", roles=" + roles + ", credentials_expired=" + credentials_expired + ", credentials_expire_at=" + credentials_expire_at + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + ", sexe=" + sexe + ", num_tel=" + num_tel + ", photo_de_profil=" + photo_de_profil + ", date_de_naissance=" + date_de_naissance + ", adresse=" + adresse+'}';
     }
-    public void ajouterAmi(Fos_user u)
-    {
-        this.listAmi.add(u);
-        
-    }
-    public void supprimerAmi(Fos_user u)
-    {
-        this.listAmi.remove(u);
-    }
-    public void afficherAmi()
-    {
-        listAmi.stream().forEach(u->System.out.println(u));
-    }
-    public void afficherAmiParId(int id)
-    {
-        if(listAmi.stream().anyMatch(u->u.getId()==id))
-                listAmi.forEach(u->System.out.println(u));
-    }
-    public void afficherParNom(String nom)
-    {
-        if(listAmi.stream().anyMatch(u->u.getNom()==nom))
-                listAmi.forEach(u->System.out.println(u));
-    }
-     public void afficherParPrenom(String prenom)
-    {
-        if(listAmi.stream().anyMatch(u->u.getPrenom()==prenom))
-                listAmi.forEach(u->System.out.println(u));
-    }
-
-    public void add(Fos_user user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+   
+   
     @Override
     public int hashCode() {
         int hash = 7;
