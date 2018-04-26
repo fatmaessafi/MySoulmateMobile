@@ -29,12 +29,12 @@ public class Affichage {
 
     Form f;
     SpanLabel lb;
-        private Resources theme;
-Form f2;
+    private Resources theme;
+    Form f2;
   
     public Affichage() {
         
-                theme = UIManager.initFirstTheme("/theme");
+        theme = UIManager.initFirstTheme("/theme");
         f = new Form("Mes Matchs",BoxLayout.y());
         lb = new SpanLabel("Mes Matchs");
         f.add(lb);

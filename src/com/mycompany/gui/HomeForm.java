@@ -20,15 +20,22 @@ public class HomeForm {
     Form f;
     TextField tnom;
     TextField tetat;
-    Button btnajout,btnaff;
+    Button btnajout,btnaff,btnamis;
 
     public HomeForm() {
         f = new Form("home");
         
         btnaff=new Button("Affichage");
+        btnamis=new Button("amis");
       
         
         f.add(btnaff);
+        f.add(btnamis);
+        
+        btnamis.addActionListener((e)->{
+        Affichageamis sa=new Affichageamis();
+        sa.getF().show();
+        });
        
         btnaff.addActionListener((e)->{
         Affichage a=new Affichage();
