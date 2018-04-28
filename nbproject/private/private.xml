@@ -4,11 +4,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Fatma/Documents/NetBeansProjects/MySoulmateMobile/src/com/mycompany/Service/ServiceMatching.java</file>
-            <file>file:/C:/Users/Fatma/Documents/NetBeansProjects/MySoulmateMobile/src/com/mycompany/myapp/MyApplication.java</file>
-            <file>file:/C:/Users/Fatma/Documents/NetBeansProjects/MySoulmateMobile/src/com/mycompany/gui/Affichage.java</file>
-            <file>file:/C:/Users/Fatma/Documents/NetBeansProjects/MySoulmateMobile/src/com/mycompany/Entite/Question.java</file>
-            <file>file:/C:/Users/Fatma/Documents/NetBeansProjects/MySoulmateMobile/src/com/mycompany/gui/HomeForm.java</file>
+            <file>file:/C:/Users/asus/Documents/GitHub/MySoulmateMobile/src/com/mycompany/myapp/MyApplication.java</file>
+            <file>file:/C:/Users/asus/Documents/GitHub/MySoulmateMobile/src/com/mycompany/Service/ServiceMsg.java</file>
+            <file>file:/C:/Users/asus/Documents/GitHub/MySoulmateMobile/src/com/mycompany/gui/Affichageamis.java</file>
+            <file>file:/C:/Users/asus/Documents/GitHub/MySoulmateMobile/src/com/mycompany/Entite/Message.java</file>
+            <file>file:/C:/Users/asus/Documents/GitHub/MySoulmateMobile/src/com/mycompany/Service/ServiceMatching.java</file>
+            <file>file:/C:/Users/asus/Documents/GitHub/MySoulmateMobile/src/com/mycompany/Service/ServiceAmis.java</file>
         </group>
     </open-files>
 </project-private>

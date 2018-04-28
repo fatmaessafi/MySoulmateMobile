@@ -12,12 +12,10 @@ import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.events.ActionListener;
 import com.mycompany.Entite.Fos_user;
-import com.mycompany.Entite.Matching;
+import com.mycompany.Entite.Message;
 import com.mycompany.myapp.MyApplication;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,13 +23,16 @@ import java.util.Map;
  *
  * @author asus
  */
-public class ServiceAmis {
+public class ServiceMsg {
 
-    public ArrayList<Fos_user> getlistamis() {
-        ArrayList<Fos_user> listUsers = new ArrayList<>();
+    public ServiceMsg() {
+    }
+    
+    public ArrayList<Message> getmsg(int idamis){
+         ArrayList<Message> listmsg = new ArrayList<>();
 
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/MysoulmateMobile/web/app_dev.php/AfficherAmis/"+MyApplication.currentid);
+        con.setUrl("http://localhost/MysoulmateMobile/web/app_dev.php/Affichermsg/"+MyApplication.currentid+"/"+idamis);
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -44,13 +45,14 @@ public class ServiceAmis {
 
                     List<Map<String, Object>> list = (List<Map<String, Object>>) matchings.get("root");
                     for (Map<String, Object> obj : list) {
-                        Fos_user fu = new Fos_user();
-                        fu.setId(Integer.parseInt(obj.get("id").toString()));
-                        fu.setNom(obj.get("nom").toString());
-                        fu.setPrenom(obj.get("prenom").toString());
-                        fu.setAge(Integer.parseInt(obj.get("age").toString()));
-                        fu.setPhoto_de_profil(obj.get("photo_de_profil").toString());
-                        listUsers.add(fu);
+                        Message msg=new Message();
+                        msg.setId_msg(Integer.parseInt(obj.get("id_msg").toString()));
+                        msg.setId_emet(Integer.parseInt(obj.get("id_emet").toString()));
+                        msg.setId_dest(Integer.parseInt(obj.get("id_dest").toString()));
+                        msg.setDuree(Integer.parseInt(obj.get("lu").toString()));
+                        msg.setText(obj.get("text").toString());
+                        msg.setDate(obj.get("date_envoi").toString());
+                        listmsg.add(msg);
                     }
                 } catch (IOException ex) {
                 }
@@ -58,6 +60,17 @@ public class ServiceAmis {
             }
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
-        return listUsers;
+        return listmsg;
+
     }
+    
+    
+    public void envoyermsg(int idamis,String text){
+          ConnectionRequest con = new ConnectionRequest();
+          con.setUrl("http://localhost/MysoulmateMobile/web/app_dev.php/Ajoutermsg/"+MyApplication.currentid+"/"+idamis+"/"+text);
+          NetworkManager.getInstance().addToQueue(con);
+
+      
+    }
+    
 }
