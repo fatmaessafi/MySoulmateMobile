@@ -25,7 +25,7 @@ import com.mycompany.gui.HomeForm;
  */
 public class MyApplication {
 
-    public static int currentid=61,idamis;
+    public static int currentid=61;
     private Form current;
     private Resources theme;
 
