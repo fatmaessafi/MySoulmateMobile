@@ -61,12 +61,46 @@ public class ServiceAmis {
         return listUsers;
     }
 
+    public ArrayList<Fos_user> getlistamis0() {
+        ArrayList<Fos_user> listUsers = new ArrayList<>();
+
+        ConnectionRequest con = new ConnectionRequest();
+        con.setUrl("http://localhost/MysoulmateMobile/web/app_dev.php/AfficherAmis0/" + MyApplication.currentid);
+        con.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                //listMatchings = getListMatching(new String(con.getResponseData()));
+                JSONParser jsonp = new JSONParser();
+
+                try {
+
+                    Map<String, Object> matchings = jsonp.parseJSON(new CharArrayReader(new String(con.getResponseData()).toCharArray()));
+
+                    List<Map<String, Object>> list = (List<Map<String, Object>>) matchings.get("root");
+                    for (Map<String, Object> obj : list) {
+                        Fos_user fu = new Fos_user();
+                        fu.setId(Integer.parseInt(obj.get("id").toString()));
+                        fu.setNom(obj.get("nom").toString());
+                        fu.setPrenom(obj.get("prenom").toString());
+                        fu.setAge(Integer.parseInt(obj.get("age").toString()));
+                        fu.setPhoto_de_profil(obj.get("photo_de_profil").toString());
+                        listUsers.add(fu);
+                    }
+                } catch (IOException ex) {
+                }
+
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+        return listUsers;
+    }
+
     public Fos_user getuserbyid(int id) {
-        
+
         Fos_user fu = new Fos_user();
 
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/MysoulmateMobile/web/app_dev.php/getuserbyid/"+id);
+        con.setUrl("http://localhost/MysoulmateMobile/web/app_dev.php/getuserbyid/" + id);
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -89,5 +123,16 @@ public class ServiceAmis {
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
         return fu;
+    }
+
+    public void like(int id2) {
+        ConnectionRequest con = new ConnectionRequest();
+        con.setUrl("http://localhost/MysoulmateMobile/web/app_dev.php/like/" + id2 + "/" + MyApplication.currentid);
+        NetworkManager.getInstance().addToQueue(con);
+    }
+     public void dislike(int id2) {
+        ConnectionRequest con = new ConnectionRequest();
+        con.setUrl("http://localhost/MysoulmateMobile/web/app_dev.php/dislike/" + id2 + "/" + MyApplication.currentid);
+        NetworkManager.getInstance().addToQueue(con);
     }
 }

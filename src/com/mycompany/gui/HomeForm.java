@@ -20,24 +20,31 @@ public class HomeForm {
     Form f;
     TextField tnom;
     TextField tetat;
-    Button btnajout, btnaff, btnamis, btnrdv0, btnrdv1;
+    Button btnajout, btnaff, btnamis, btnrdv0, btnrdv1,btnamis0;
 
     public HomeForm() {
         f = new Form("home");
 
         btnaff = new Button("Affichage");
         btnamis = new Button("amis");
+        btnamis0 = new Button("amis0");
         btnrdv0 = new Button("rdv0");
         btnrdv1 = new Button("rdv1");
 
         f.add(btnaff);
         f.add(btnamis);
+        f.add(btnamis0);
         f.add(btnrdv0);
         f.add(btnrdv1);
 
         btnamis.addActionListener((e) -> {
             Affichageamis sa = new Affichageamis();
             sa.getF().show();
+        });
+        
+        btnamis0.addActionListener((e) -> {
+            Affichageamis0 sa = new Affichageamis0();
+            sa.getF0().show();
         });
 
         btnaff.addActionListener((e) -> {
